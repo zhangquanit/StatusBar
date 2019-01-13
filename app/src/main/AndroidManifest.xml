@@ -19,6 +19,7 @@
         <activity android:name=".AsaSystemBarTestActivity" android:screenOrientation="portrait"/>
         <activity android:name=".SimpleTintBarActivity" android:screenOrientation="portrait"/>
         <activity android:name=".SlideViewTintActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".fragment.MyFragActivity" />
     </application>
 
 </manifest>

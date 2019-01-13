@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * Created by gmm on 2016/11/24.
  */
 
-public class AsaSystemBar {
+public class SystemBar {
 
     private int useBelowVersion;
     private Window window;
@@ -35,9 +35,9 @@ public class AsaSystemBar {
     private int statusBarColor;
     private Drawable statusBarDrawable;
 
-    private AsaSystemBar(int useBelowVersion, Window window, boolean lightStatusBar, boolean transparentStatusBar,
-                         boolean transparentNavigationbar, boolean isSetActionbarPadding, View actionBarView,
-                         boolean addStatusBarView, int statusBarColor, Drawable statusBarDrawable) {
+    private SystemBar(int useBelowVersion, Window window, boolean lightStatusBar, boolean transparentStatusBar,
+                      boolean transparentNavigationbar, boolean isSetActionbarPadding, View actionBarView,
+                      boolean addStatusBarView, int statusBarColor, Drawable statusBarDrawable) {
         this.useBelowVersion = useBelowVersion;
         this.window = window;
         this.lightStatusBar = lightStatusBar;
@@ -290,15 +290,15 @@ public class AsaSystemBar {
         view.post(new Runnable() {
             @Override
             public void run() {
-                ViewGroup viewGroup = (ViewGroup) view.getParent();
-                viewGroup.setPadding(viewGroup.getPaddingLeft(), viewGroup.getPaddingTop()
-                                + getStatusBarOffsetPx(viewGroup.getContext()),
-                        viewGroup.getPaddingRight(), viewGroup.getPaddingBottom());
+//                ViewGroup viewGroup= (ViewGroup) view.getParent();
+//                viewGroup.setPadding(viewGroup.getPaddingLeft(), viewGroup.getPaddingTop()
+//                                + getStatusBarOffsetPx(viewGroup.getContext()),
+//                        viewGroup.getPaddingRight(), viewGroup.getPaddingBottom());
 
-//                view.setPadding(view.getPaddingLeft(), view.getPaddingTop()
-//                                + getStatusBarOffsetPx(view.getContext()),
-//                        view.getPaddingRight(), view.getPaddingBottom());
-//                view.getLayoutParams().height += getStatusBarOffsetPx(view.getContext());
+                view.setPadding(view.getPaddingLeft(), view.getPaddingTop()
+                                + getStatusBarOffsetPx(view.getContext()),
+                        view.getPaddingRight(), view.getPaddingBottom());
+                view.getLayoutParams().height += getStatusBarOffsetPx(view.getContext());
             }
         });
 
@@ -373,16 +373,11 @@ public class AsaSystemBar {
         /**
          * setActionbarView  before setActionbarPadding(true)
          *
-         * @param isSetActionbarPadding
          * @return
          */
-        public Builder setActionbarPadding(boolean isSetActionbarPadding) {
-            this.isSetActionbarPadding = isSetActionbarPadding;
-            return this;
-        }
-
-        public Builder setActionbarView(@NonNull View actionBarView) {
-            this.actionBarView = actionBarView;
+        public Builder setActionbarPadding(View view) {
+            this.isSetActionbarPadding = true;
+            this.actionBarView = view;
             return this;
         }
 
@@ -414,7 +409,7 @@ public class AsaSystemBar {
             }
 
 
-            new AsaSystemBar(useBelowVersion, window, lightStatusBar, transparentStatusBar
+            new SystemBar(useBelowVersion, window, lightStatusBar, transparentStatusBar
                     , transparentNavigationbar, isSetActionbarPadding, actionBarView,
                     addStatusBarView, statusBarColor, statusBarDrawable).process();
         }
